@@ -1,4 +1,8 @@
-Every file should be camel cased. As well as making sure that no redundent features such as numbers at the end of the file or "old version" are used.
+Every file should be camel cased.
+As well as making sure that no redundent features such as numbers
+at the end of the file or "old version" are used.
 
-If a scene requires one or multiple scripts they should be together in the same folder. Making a "scene" and "scripts" misc. folders is ok just make sure that if a specific
+If a scene requires one or multiple scripts they should be together
+in the same folder. Making a "scene" and "scripts" misc.
+folders is ok just make sure that if a specific
 scene requires a specific script they should be kept together.
