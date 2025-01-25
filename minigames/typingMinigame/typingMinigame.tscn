@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqse8ivwngds6"]
+
+[ext_resource type="Script" path="res://minigames/typingMinigame/typingMinigame.gd" id="1_ee23r"]
+
+[node name="typingMinigame" type="Node2D"]
+
+[node name="text" type="RichTextLabel" parent="."]
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 800.0
+offset_bottom = 400.0
+bbcode_enabled = true
+text = "This is test text"
+script = ExtResource("1_ee23r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 300.0
+offset_top = 200.0
+offset_right = 800.0
+offset_bottom = 400.0
