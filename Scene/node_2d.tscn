@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2lb8i680c0nk"]
+[gd_scene load_steps=6 format=3 uid="uid://c2lb8i680c0nk"]
 
 [ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="1_c1ej0"]
 [ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_gjh3b"]
 [ext_resource type="Script" path="res://Scene/at_ease.gd" id="3_s8vgk"]
+[ext_resource type="Texture2D" uid="uid://d4e2nry4jmhpx" path="res://assets/lockedThoughtBubble.png" id="4_baqiy"]
+[ext_resource type="Script" path="res://Scene/control.gd" id="5_uqhpv"]
 
 [node name="Main" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(575, 325)
 texture = ExtResource("1_c1ej0")
@@ -18,4 +18,31 @@ position = Vector2(243.5, 373.25)
 scale = Vector2(0.908408, 0.753333)
 texture = ExtResource("2_gjh3b")
 script = ExtResource("3_s8vgk")
-speed = 200.0
+speed = 100.0
+
+[node name="Speech" type="Sprite2D" parent="AtEase"]
+position = Vector2(90.818, -143.695)
+scale = Vector2(0.474, 0.572)
+
+[node name="Thought" type="Sprite2D" parent="AtEase"]
+position = Vector2(115, -180)
+scale = Vector2(0.474089, 0.571681)
+texture = ExtResource("4_baqiy")
+
+[node name="Control" type="Control" parent="AtEase/Thought"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.0
+offset_top = -262.5
+offset_right = -258.0
+offset_bottom = -112.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_uqhpv")
+
+[connection signal="mouse_entered" from="AtEase/Thought/Control" to="AtEase/Thought/Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="AtEase/Thought/Control" to="AtEase/Thought/Control" method="_on_mouse_exited"]
