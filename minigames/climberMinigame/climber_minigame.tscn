@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgu6n6c6l6ok6"]
+
+[ext_resource type="Script" path="res://minigames/climberMinigame/climber.gd" id="1_xm8iq"]
+[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="2_8vski"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06hhk"]
+radius = 10.9276
+height = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlkia"]
+size = Vector2(1162, 99)
+
+[node name="climberMinigame" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(329, 297)
+script = ExtResource("1_xm8iq")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+scale = Vector2(0.0800038, 0.160001)
+texture = ExtResource("2_8vski")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+scale = Vector2(2.92837, 1)
+shape = SubResource("CapsuleShape2D_06hhk")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(6, 570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+position = Vector2(571, 39.5)
+shape = SubResource("RectangleShape2D_wlkia")
+
+[node name="ColorRect" type="ColorRect" parent="ground"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 1152.0
+offset_bottom = 89.0
