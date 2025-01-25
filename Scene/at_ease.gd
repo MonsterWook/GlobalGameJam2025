@@ -3,6 +3,8 @@ extends Sprite2D
 @export var speed = 0.25
 var spawned = false
 
+signal click(mousePos)
+
 var speechSprite
 var thoughtSprite
 var cursorSprite = load("res://assets/hoverCursor.png")
@@ -21,9 +23,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spawnCustomer"):
 		spawnCustomer()
 
-	if position.x < 575 && spawned:
+	if position.x < 0 && spawned:
 		position.x += delta * speed
-	if position.x >= 575 && test:
+	if position.x >= 0 && test:
 		test = false
 		await get_tree().create_timer(1).timeout
 		switchSpeech("res://assets/testSpeachBubble2.png")
@@ -33,7 +35,9 @@ func _process(delta: float) -> void:
 		switchThought("res://assets/lockedThoughtBubble.png")
 	
 	if Input.is_action_just_pressed("LeftClick"):
+		var thought = $Thought
 		var mousePos = get_viewport().get_mouse_position()
+		click.emit(mousePos)
 
 func spawnCustomer() -> void:
 	show()

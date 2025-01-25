@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2lb8i680c0nk"]
+
+[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="1_oq6ur"]
+[ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_wi0vg"]
+[ext_resource type="Script" path="res://Scene/at_ease.gd" id="3_yen8d"]
+[ext_resource type="Texture2D" uid="uid://d4e2nry4jmhpx" path="res://assets/lockedThoughtBubble.png" id="4_il0f3"]
+[ext_resource type="Script" path="res://Scene/control.gd" id="5_ih2oa"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Office" type="Node2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="Background" type="Sprite2D" parent="Office"]
+z_index = -1
+texture = ExtResource("1_oq6ur")
+
+[node name="AtEase" type="Sprite2D" parent="Office"]
+position = Vector2(-331.5, 48.25)
+scale = Vector2(0.908408, 0.753333)
+texture = ExtResource("2_wi0vg")
+script = ExtResource("3_yen8d")
+speed = 100.0
+
+[node name="Speech" type="Sprite2D" parent="Office/AtEase"]
+position = Vector2(90.818, -143.695)
+scale = Vector2(0.474, 0.572)
+
+[node name="Thought" type="Sprite2D" parent="Office/AtEase"]
+position = Vector2(115, -180)
+scale = Vector2(0.474089, 0.571681)
+texture = ExtResource("4_il0f3")
+
+[node name="Control" type="Control" parent="Office/AtEase/Thought"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.0
+offset_top = -272.5
+offset_right = -258.0
+offset_bottom = -122.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ih2oa")
+
+[connection signal="click" from="Office/AtEase" to="Office/AtEase/Thought/Control" method="_on_at_ease_click"]
+[connection signal="mouse_entered" from="Office/AtEase/Thought/Control" to="Office/AtEase/Thought/Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Office/AtEase/Thought/Control" to="Office/AtEase/Thought/Control" method="_on_mouse_exited"]

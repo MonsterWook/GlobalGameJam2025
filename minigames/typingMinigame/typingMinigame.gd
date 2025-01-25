@@ -14,6 +14,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	text = "[center][color=black]%s[/color][color=#c7c7c7]%s[/color][/center]" % [typedText.substr(0, currentChar), textToBeTyped.substr(currentChar)]
+	"""CODE ADDED BY MITCHELL:"""
+	if currentChar >= textToBeTyped.length():
+		"""Win (Can be in function)"""
+		pass
 
 func _unhandled_input(event):
 	if currentChar >= textToBeTyped.length():
