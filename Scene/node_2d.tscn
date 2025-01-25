@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2lb8i680c0nk"]
+
+[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="1_c1ej0"]
+[ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_gjh3b"]
+[ext_resource type="Script" path="res://Scene/at_ease.gd" id="3_s8vgk"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(575, 325)
+texture = ExtResource("1_c1ej0")
+
+[node name="AtEase" type="Sprite2D" parent="."]
+position = Vector2(243.5, 373.25)
+scale = Vector2(0.908408, 0.753333)
+texture = ExtResource("2_gjh3b")
+script = ExtResource("3_s8vgk")
