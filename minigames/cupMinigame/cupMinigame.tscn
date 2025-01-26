@@ -132,6 +132,7 @@ _data = {
 }
 
 [node name="cupMinigame" type="Node2D"]
+position = Vector2(-500, -250)
 script = ExtResource("1_cvur0")
 
 [node name="Ball" type="Sprite2D" parent="."]
@@ -180,6 +181,9 @@ offset_right = 994.0
 offset_bottom = 538.0
 mouse_filter = 2
 color = Color(0.238, 0.2597, 0.28, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [connection signal="mouse_entered" from="cupCorrect/cupCorrectArea" to="." method="onMouseEnterCup" binds= [true, "cupCorrect"]]
 [connection signal="mouse_exited" from="cupCorrect/cupCorrectArea" to="." method="onMouseExitCup"]

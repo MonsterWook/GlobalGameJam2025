@@ -10,6 +10,7 @@ var sceneChange2 = false
 var canClick = false
 var Offset = Vector2(40, 30)
 var oldCamPos
+var currentNPC
 
 var nodeWithSignalPath
 var sceneNode
@@ -65,28 +66,23 @@ func _on_minigame_complete() -> void:
 	sceneChange2 = true
 	FUCKING_LEAVE.emit()
 
-func _on_click() -> void:
+func _on_click(NPC) -> void:
 	if (canClick):
 		sceneChange = true
+		currentNPC = NPC
 		switchMinigame()
 		oldCamPos = camera.position
 		camera.global_position = global_position + Offset
 
 func switchMinigame():
-	var minigame = minigames.get(randi() % minigames.size())
 	
-	"""FOR NOW"""
-	var inti = randi()
-	inti %= 2
-	minigame = minigames.get(inti)
-	
-	match(minigame):
-		"Typing":
+	match(currentNPC):
+		"OfficeGuy":
 			minigameScene = load("res://minigames/typingMinigame/typingMinigame.tscn").instantiate()
 			nodeWithSignalPath = "typingMinigame/text"
 			sceneNode = "typingMinigame"
 		
-		"Cup":
+		"Hustler":
 			minigameScene = load("res://minigames/cupMinigame/cupMinigame.tscn").instantiate()
 			nodeWithSignalPath = "cupMinigame"
 			sceneNode = "cupMinigame"
