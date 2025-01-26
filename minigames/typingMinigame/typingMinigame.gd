@@ -5,6 +5,10 @@ var textToBeTyped: String = ""
 var currentChar: int = 0
 
 var typedText: String = ""
+var isWrong: bool = false
+var gameFinished: bool = false
+
+@onready var bg = $"../BG"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,13 +18,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	text = "[center][color=black]%s[/color][color=#c7c7c7]%s[/color][/center]" % [typedText.substr(0, currentChar), textToBeTyped.substr(currentChar)]
-	"""CODE ADDED BY MITCHELL:"""
-	if currentChar >= textToBeTyped.length():
-		"""Win (Can be in function)"""
+	if currentChar >= textToBeTyped.length() && !gameFinished:
+		gameFinished = true
+		bg.play("Finished")
+		
+		await get_tree().create_timer(2).timeout
 		get_tree().change_scene_to_file("res://Main Scenes/officeLeaving.tscn")
 
 func _unhandled_input(event):
-	if currentChar >= textToBeTyped.length():
+	if isWrong or currentChar >= textToBeTyped.length():
 		return
 
 	var nextChar = textToBeTyped.unicode_at(currentChar)
@@ -40,5 +46,12 @@ func typeLetter():
 	currentChar += 1
 	
 func failLetter():
-	print("fail letter")
-	pass 
+	bg.play("Wrong")
+	isWrong = true
+	await get_tree().create_timer(1).timeout
+	
+	isWrong = false
+	bg.play("Default")
+	
+	
+	 

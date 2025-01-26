@@ -1,21 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqse8ivwngds6"]
+[gd_scene load_steps=8 format=3 uid="uid://bqse8ivwngds6"]
 
 [ext_resource type="Script" path="res://minigames/typingMinigame/typingMinigame.gd" id="1_ee23r"]
+[ext_resource type="Texture2D" uid="uid://l8ym0x47viyg" path="res://minigames/typingMinigame/typingMinigameSheet.png" id="2_i31cq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o8pv"]
+atlas = ExtResource("2_i31cq")
+region = Rect2(0, 0, 198, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdikg"]
+atlas = ExtResource("2_i31cq")
+region = Rect2(198, 0, 198, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgw5h"]
+atlas = ExtResource("2_i31cq")
+region = Rect2(396, 0, 198, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmg0i"]
+atlas = ExtResource("2_i31cq")
+region = Rect2(0, 0, 198, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6c4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o8pv")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdikg")
+}],
+"loop": true,
+"name": &"Finished",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgw5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmg0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgw5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmg0i")
+}],
+"loop": false,
+"name": &"Wrong",
+"speed": 6.0
+}]
 
 [node name="typingMinigame" type="Node2D"]
 
+[node name="BG" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v6c4v")
+animation = &"Default"
+
 [node name="text" type="RichTextLabel" parent="."]
-offset_left = 300.0
-offset_top = 300.0
-offset_right = 800.0
-offset_bottom = 400.0
+offset_left = 28.0
+offset_top = -124.0
+offset_right = 270.0
+offset_bottom = -70.0
 bbcode_enabled = true
 text = "This is test text"
 script = ExtResource("1_ee23r")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-offset_left = 300.0
-offset_top = 200.0
-offset_right = 800.0
-offset_bottom = 400.0
+[node name="Camera2D" type="Camera2D" parent="."]
