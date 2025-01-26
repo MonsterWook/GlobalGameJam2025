@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=25 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
-[ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_wi0vg"]
+[ext_resource type="Texture2D" uid="uid://b8hwg7mem5jqp" path="res://Main Scenes/char.png" id="2_ffthf"]
 [ext_resource type="Script" path="res://Main Scenes/at_ease.gd" id="3_yen8d"]
+[ext_resource type="Texture2D" uid="uid://6g7j03s115ts" path="res://Main Scenes/thoughtbubble.png" id="4_ectlr"]
+[ext_resource type="Texture2D" uid="uid://ie453qsuv4bt" path="res://Main Scenes/lock.png" id="4_nbtjs"]
+[ext_resource type="Texture2D" uid="uid://dmamllu2r4guc" path="res://Main Scenes/table.png" id="5_154jg"]
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
@@ -52,6 +55,116 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgtxr"]
+atlas = ExtResource("2_ffthf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wecb"]
+atlas = ExtResource("2_ffthf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4tmw"]
+atlas = ExtResource("2_ffthf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i704"]
+atlas = ExtResource("2_ffthf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_of7iq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgtxr")
+}],
+"loop": true,
+"name": &"Climber",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wecb")
+}],
+"loop": true,
+"name": &"Hustler",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4tmw")
+}],
+"loop": true,
+"name": &"OfficeGuy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i704")
+}],
+"loop": true,
+"name": &"Rat",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26x5q"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(1950, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kkcw"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(0, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxmv8"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(650, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aox1g"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(1300, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cauec"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(1950, 0, 650, 375)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4arh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nbtjs")
+}],
+"loop": true,
+"name": &"LockedThoughtBubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26x5q")
+}],
+"loop": true,
+"name": &"ThoughtBubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kkcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxmv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aox1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cauec")
+}],
+"loop": false,
+"name": &"ThoughtBubbleForming",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_fguos"]
+font_italic = true
+
 [node name="Office" type="Node2D"]
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
@@ -76,20 +189,25 @@ position = Vector2(-320, 120)
 loop = false
 script = SubResource("GDScript_ttk42")
 
-[node name="NPC" type="Sprite2D" parent="NPC/Path2D/PathFollow2D"]
-position = Vector2(-13, -71.75)
-scale = Vector2(0.908408, 0.753333)
-texture = ExtResource("2_wi0vg")
+[node name="NPC" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D"]
+texture_filter = 1
+position = Vector2(-23, -49)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_of7iq")
+animation = &"Rat"
 script = ExtResource("3_yen8d")
 speed = 100.0
 
 [node name="Speech" type="Sprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
-position = Vector2(90.818, -143.695)
-scale = Vector2(0.474, 0.572)
+position = Vector2(51.3333, -33.3333)
+scale = Vector2(0.2, 0.242)
 
-[node name="Thought" type="Sprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
-position = Vector2(115, -180)
-scale = Vector2(0.474089, 0.571681)
+[node name="Thought" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
+visible = false
+position = Vector2(69.3333, -50.6667)
+scale = Vector2(0.2, 0.242)
+sprite_frames = SubResource("SpriteFrames_f4arh")
+animation = &"LockedThoughtBubble"
 
 [node name="Control" type="Control" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 layout_mode = 3
@@ -98,18 +216,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -433.0
-offset_top = -272.5
-offset_right = -258.0
-offset_bottom = -122.5
+offset_left = -270.0
+offset_top = -318.354
+offset_right = -95.0
+offset_bottom = -168.354
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_ih2oa")
 metadata/_edit_use_anchors_ = true
 
+[node name="Label" type="Label" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
+z_index = 10
+offset_left = 56.0
+offset_top = -104.857
+offset_right = 96.0
+offset_bottom = -81.8566
+scale = Vector2(4.76666, 1.65902)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_fguos")
+theme_override_font_sizes/font_size = 50
+autowrap_mode = 1
+
 [node name="NPCSpawner" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Table" type="Sprite2D" parent="."]
+z_index = 5
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("5_154jg")
 
 [connection signal="timeout" from="Background/Door" to="NPC/Path2D/PathFollow2D/NPC" method="_close_door"]
 [connection signal="click" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_click"]

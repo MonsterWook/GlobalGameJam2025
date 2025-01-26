@@ -1,13 +1,15 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @export var speed = 0.25
 
 signal click(mousePos)
 signal readyForNPC
+signal firstBubble
 
 var speechSprite
-var thoughtSprite
+var thoughtSprite : AnimatedSprite2D
 var background : AnimatedSprite2D
+var thoughtText : Label
 var cursorSprite = load("res://assets/hoverCursor.png")
 var path: PathFollow2D
 var NPC
@@ -37,6 +39,7 @@ func _ready() -> void:
 	speechSprite = $"Speech"
 	thoughtSprite = $"Thought"
 	background = $"../../../../Background"
+	thoughtText = $Thought/Label
 	path = $".."
 	$"../../../../NPCSpawner".start()
 
@@ -49,6 +52,7 @@ func _process(delta: float) -> void:
 			path.progress_ratio += 0.25 * delta
 		else:
 			enter = false
+			firstBubble.emit()
 	
 	if leave:
 		if path.progress_ratio > 0:
@@ -79,7 +83,7 @@ func entranceDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
 			speechSprite.set_texture(load(speechBubble1))
-			await get_tree().create_timer(2).timeout
+			await firstBubble
 			entranceDialogue(1)
 		1:
 			speechSprite.set_texture(load(speechBubble2))
@@ -91,16 +95,20 @@ func entranceDialogue(dialogueNumber):
 			entranceDialogue(3)
 		3:
 			speechSprite.set_texture(null)
-			thoughtSprite.set_texture(load(lockedThoughtBubble))
+			thoughtSprite.show()
+			thoughtSprite.play("ThoughtBubbleForming")
+			await thoughtSprite.animation_finished
+			thoughtSprite.play("LockedThoughtBubble")
 
 func exitDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
-			thoughtSprite.set_texture(load(unlockedThoughtBubble))
+			thoughtSprite.play("ThoughtBubble")
+			thoughtText.text = unlockedThoughtBubble
 			await get_tree().create_timer(3).timeout
 			exitDialogue(1)
 		1:
-			thoughtSprite.set_texture(null)
+			thoughtSprite.hide()
 			speechSprite.position = Vector2(270, 133)
 			speechSprite.set_texture(load(exitSpeechBubble1))
 			await get_tree().create_timer(2).timeout
@@ -114,14 +122,16 @@ func switchNPC():
 	var inti = randi() % NPCs.size()
 	NPC = NPCs.get(inti)
 	
+	play(NPC)
+	
 	match(NPC):
 		"OfficeGuy":
+			
 			speechBubble1 = "res://assets/OfficeGuy/testSpeachBubble.png"
 			speechBubble2 = "res://assets/OfficeGuy/testSpeachBubble2.png"
 			speechBubble3 = "res://assets/OfficeGuy/testSpeachBubble3.png"
-			lockedThoughtBubble = "res://assets/OfficeGuy/lockedThoughtBubble.png"
 			
-			unlockedThoughtBubble = "res://assets/OfficeGuy/unlockedThoughtBubble.png"
+			unlockedThoughtBubble = ""
 			exitSpeechBubble1 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble2.png"
 			exitSpeechBubble2 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble3.png"
 		
@@ -129,9 +139,8 @@ func switchNPC():
 			speechBubble1 = "res://assets/Hustler/hustlerEnterDialogue1.png"
 			speechBubble2 = "res://assets/Hustler/hustlerEnterDialogue2.png"
 			speechBubble3 = "res://assets/Hustler/hustlerEnterDialogue3.png"
-			lockedThoughtBubble = "res://assets/lockedThoughtBubble.png"
 			
-			unlockedThoughtBubble = "res://assets/Hustler/hustlerUnlockedThoughtBubble.png"
+			unlockedThoughtBubble = "I haven't done a card scam in a while"
 			exitSpeechBubble1 = "res://assets/Hustler/hustlerExitDialogue1.png"
 			exitSpeechBubble2 = "res://assets/Hustler/hustlerExitDialogue2.png"
 
