@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bob3gxoooycjw"
-path="res://.godot/imported/officeGuyLeavingSpeechBubble1.png-c507bbece6fc6a043dc3ae64ed2c1ff1.ctex"
+uid="uid://c4pa74orv01qg"
+path="res://.godot/imported/testSpeachBubble2.png-5d3b294bc52a0646624ee5518f3ba16a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/officeGuyLeavingSpeechBubble1.png"
-dest_files=["res://.godot/imported/officeGuyLeavingSpeechBubble1.png-c507bbece6fc6a043dc3ae64ed2c1ff1.ctex"]
+source_file="res://assets/OfficeGuy/testSpeachBubble2.png"
+dest_files=["res://.godot/imported/testSpeachBubble2.png-5d3b294bc52a0646624ee5518f3ba16a.ctex"]
 
 [params]
 

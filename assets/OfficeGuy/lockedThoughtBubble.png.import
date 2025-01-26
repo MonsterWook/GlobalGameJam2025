@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4pa74orv01qg"
-path="res://.godot/imported/testSpeachBubble2.png-8ea0740843461f4dd7fbd8fc8995e5ff.ctex"
+uid="uid://d4e2nry4jmhpx"
+path="res://.godot/imported/lockedThoughtBubble.png-953fb83eccbe4cf8356c1566e4adf686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/testSpeachBubble2.png"
-dest_files=["res://.godot/imported/testSpeachBubble2.png-8ea0740843461f4dd7fbd8fc8995e5ff.ctex"]
+source_file="res://assets/OfficeGuy/lockedThoughtBubble.png"
+dest_files=["res://.godot/imported/lockedThoughtBubble.png-953fb83eccbe4cf8356c1566e4adf686.ctex"]
 
 [params]
 

@@ -4,6 +4,7 @@ extends Control
 
 var camZoomSpeed = Vector2(3, 3)
 var sceneChange = false
+var canClick = false
 
 var minigameScene = preload("res://minigames/typingMinigame/typingMinigame.tscn").instantiate()
 
@@ -22,16 +23,17 @@ func _process(delta: float) -> void:
 
 
 func _on_mouse_entered() -> void:
+	canClick = true
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 
 func _on_mouse_exited() -> void:
+	canClick = false
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
-func _on_at_ease_click(mousePos) -> void:
-	mousePos -= global_position
-	if (0 <= mousePos.x && mousePos.x <= 75) && (0 <= mousePos.y && mousePos.y <= 65):
+func _on_click() -> void:
+	if (canClick):
 		sceneChange = true
 		var Offset = Vector2(40, 30)
 		camera.global_position = global_position + Offset

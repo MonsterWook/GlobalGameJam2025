@@ -1,37 +1,93 @@
-[gd_scene load_steps=6 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=11 format=3 uid="uid://clj25w4vcne7q"]
 
-[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="1_oq6ur"]
+[ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
 [ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_wi0vg"]
 [ext_resource type="Script" path="res://Main Scenes/at_ease.gd" id="3_yen8d"]
-[ext_resource type="Texture2D" uid="uid://d4e2nry4jmhpx" path="res://assets/lockedThoughtBubble.png" id="4_il0f3"]
+[ext_resource type="Texture2D" path="res://assets/lockedThoughtBubble.png" id="4_il0f3"]
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
+atlas = ExtResource("1_ej1m3")
+region = Rect2(0, 0, 198, 108)
 
-[node name="Office" type="Node2D" parent="."]
-position = Vector2(575, 325)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnod5"]
+atlas = ExtResource("1_ej1m3")
+region = Rect2(198, 0, 198, 108)
 
-[node name="Background" type="Sprite2D" parent="Office"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8c4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_domwp")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnod5")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_r83oa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -320, 120, 0, 0, 0, 0, 0, 120)
+}
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_ttk42"]
+script/source = "extends PathFollow2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="NPC" type="Node2D"]
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
 z_index = -1
-texture = ExtResource("1_oq6ur")
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v8c4r")
+animation = &"closed"
 
-[node name="AtEase" type="Sprite2D" parent="Office"]
-position = Vector2(-333, 48.25)
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r83oa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-320, 120)
+script = SubResource("GDScript_ttk42")
+
+[node name="NPC" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-13, -71.75)
 scale = Vector2(0.908408, 0.753333)
 texture = ExtResource("2_wi0vg")
 script = ExtResource("3_yen8d")
 speed = 100.0
 
-[node name="Speech" type="Sprite2D" parent="Office/AtEase"]
+[node name="Speech" type="Sprite2D" parent="Path2D/PathFollow2D/NPC"]
 position = Vector2(90.818, -143.695)
 scale = Vector2(0.474, 0.572)
 
-[node name="Thought" type="Sprite2D" parent="Office/AtEase"]
+[node name="Thought" type="Sprite2D" parent="Path2D/PathFollow2D/NPC"]
 position = Vector2(115, -180)
 scale = Vector2(0.474089, 0.571681)
 texture = ExtResource("4_il0f3")
 
-[node name="Control" type="Control" parent="Office/AtEase/Thought"]
+[node name="Control" type="Control" parent="Path2D/PathFollow2D/NPC/Thought"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,9 +103,6 @@ grow_vertical = 2
 script = ExtResource("5_ih2oa")
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera2D" type="Camera2D" parent="Office"]
-position_smoothing_enabled = true
-
-[connection signal="click" from="Office/AtEase" to="Office/AtEase/Thought/Control" method="_on_at_ease_click"]
-[connection signal="mouse_entered" from="Office/AtEase/Thought/Control" to="Office/AtEase/Thought/Control" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Office/AtEase/Thought/Control" to="Office/AtEase/Thought/Control" method="_on_mouse_exited"]
+[connection signal="click" from="Path2D/PathFollow2D/NPC" to="Path2D/PathFollow2D/NPC/Thought/Control" method="_on_click"]
+[connection signal="mouse_entered" from="Path2D/PathFollow2D/NPC/Thought/Control" to="Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Path2D/PathFollow2D/NPC/Thought/Control" to="Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_exited"]

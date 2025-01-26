@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da0qblrq4os6w"
-path="res://.godot/imported/testSpeachBubble.png-6b69eb37472b1ba5a407e2937e7b80ec.ctex"
+path="res://.godot/imported/testSpeachBubble.png-b19682b35b63b04b79cfa3dc5c947151.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/testSpeachBubble.png"
-dest_files=["res://.godot/imported/testSpeachBubble.png-6b69eb37472b1ba5a407e2937e7b80ec.ctex"]
+source_file="res://assets/OfficeGuy/testSpeachBubble.png"
+dest_files=["res://.godot/imported/testSpeachBubble.png-b19682b35b63b04b79cfa3dc5c947151.ctex"]
 
 [params]
 
