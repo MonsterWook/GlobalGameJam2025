@@ -35,12 +35,11 @@ func _ready() -> void:
 	thoughtSprite = $"Thought"
 	background = $"../../../../Background"
 	path = $".."
+	$"../../../../NPCSpawner".start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("spawnCustomer"):
-		spawnCustomer()
 
 	if enter:
 		if path.progress_ratio < 1:
@@ -54,6 +53,7 @@ func _process(delta: float) -> void:
 		else:
 			leave = false
 			hide()
+			$"../../../../NPCSpawner".start()
 	
 	if Input.is_action_just_pressed("LeftClick"):
 		click.emit()
@@ -87,6 +87,7 @@ func entranceDialogue(dialogueNumber):
 func exitDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
+			thoughtSprite.set_texture(null)
 			speechSprite.set_texture(load(exitSpeechBubble1))
 			await get_tree().create_timer(4).timeout
 			exitDialogue(1)

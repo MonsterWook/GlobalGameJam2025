@@ -1,5 +1,7 @@
 extends Node2D
 
+signal changeScene
+
 var correctCup: bool = false
 var canClick: bool = false
 var canChoose: bool = false
@@ -9,12 +11,11 @@ var cup: Node2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	await get_tree().create_timer(1).timeout
+	animation_player.play("cupGame1")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("spawnCustomer"):
-		animation_player.play("cupGame1")
 	if canChoose && Input.is_action_just_pressed("LeftClick") && canClick:
 		canChoose = false
 		var tween = get_tree().create_tween()
@@ -23,6 +24,8 @@ func _process(delta):
 			print("correct")
 		else:
 			print("wrong")
+		await get_tree().create_timer(1).timeout
+		changeScene.emit()
 
 func onMouseExitCup():
 	canClick = false

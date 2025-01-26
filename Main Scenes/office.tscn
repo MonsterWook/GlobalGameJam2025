@@ -109,8 +109,13 @@ grow_vertical = 2
 script = ExtResource("5_ih2oa")
 metadata/_edit_use_anchors_ = true
 
+[node name="NPCSpawner" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="Background/Door" to="NPC/Path2D/PathFollow2D/NPC" method="_close_door"]
 [connection signal="click" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_click"]
 [connection signal="FUCKING_LEAVE" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC" method="_fucking_leave"]
 [connection signal="mouse_entered" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_exited"]
+[connection signal="timeout" from="NPCSpawner" to="NPC/Path2D/PathFollow2D/NPC" method="spawnCustomer"]
