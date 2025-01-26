@@ -17,7 +17,7 @@ func _process(delta):
 	"""CODE ADDED BY MITCHELL:"""
 	if currentChar >= textToBeTyped.length():
 		"""Win (Can be in function)"""
-		pass
+		get_tree().change_scene_to_file("res://Main Scenes/officeLeaving.tscn")
 
 func _unhandled_input(event):
 	if currentChar >= textToBeTyped.length():
