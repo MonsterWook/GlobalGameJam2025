@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgu6n6c6l6ok6"]
+
+[ext_resource type="Script" path="res://minigames/climberMinigame/climberMinigame.gd" id="1_1pbhp"]
+[ext_resource type="Script" path="res://minigames/climberMinigame/climber.gd" id="1_twjvh"]
+[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="2_f18gt"]
+[ext_resource type="Texture2D" uid="uid://bmthvt1rl4d7t" path="res://minigames/climberMinigame/climbingBG.png" id="3_oyk5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg05f"]
+radius = 26.3059
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geeaj"]
+size = Vector2(244.5, 72.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_est4q"]
+size = Vector2(175.5, 202.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq5mm"]
+size = Vector2(171.5, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p21b1"]
+size = Vector2(68, 316)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px523"]
+size = Vector2(161, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elxc6"]
+size = Vector2(174, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfjjd"]
+size = Vector2(1571, 189)
+
+[node name="climberMinigame" type="Node2D"]
+script = ExtResource("1_1pbhp")
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(-373, 167)
+floor_stop_on_slope = false
+floor_max_angle = 1.55334
+script = ExtResource("1_twjvh")
+speed = 350.0
+jumpStrength = 550.0
+acceleration = 100
+friction = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+scale = Vector2(-0.04, -0.08)
+texture = ExtResource("2_f18gt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("CircleShape2D_wg05f")
+
+[node name="collision" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D"]
+position = Vector2(-372.25, 264.875)
+shape = SubResource("RectangleShape2D_geeaj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D2"]
+position = Vector2(-71, 281)
+shape = SubResource("RectangleShape2D_est4q")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D3"]
+position = Vector2(166, 202.875)
+shape = SubResource("RectangleShape2D_est4q")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D4"]
+position = Vector2(471, 71)
+shape = SubResource("RectangleShape2D_sq5mm")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="collision"]
+position = Vector2(29, -141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D7"]
+position = Vector2(496, 32)
+shape = SubResource("RectangleShape2D_p21b1")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision/StaticBody2D5"]
+position = Vector2(25.5, -32.5)
+shape = SubResource("RectangleShape2D_px523")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="collision"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision/StaticBody2D6"]
+polygon = PackedVector2Array(-493, -269, -495, -115, -324, -122, -409, -48, -496, -8, -494, 293, -611, 296, -611, -274)
+
+[node name="area" type="Node" parent="."]
+
+[node name="win" type="Area2D" parent="area"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/win"]
+position = Vector2(-408, -187.5)
+shape = SubResource("RectangleShape2D_elxc6")
+
+[node name="kill" type="Area2D" parent="area"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/kill"]
+position = Vector2(-11.5, 360.5)
+shape = SubResource("RectangleShape2D_vfjjd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("3_oyk5w")
+
+[connection signal="body_entered" from="area/win" to="." method="win"]
+[connection signal="body_entered" from="area/kill" to="." method="lose"]
