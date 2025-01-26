@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bb2cuue4ddvi0"]
 
 [ext_resource type="Script" path="res://minigames/ratMinigame/ratMinigame.gd" id="1_het8t"]
-[ext_resource type="Texture2D" uid="uid://tm0ud8fg0v3y" path="res://minigames/ratMinigame/imstilljustaratstuckinacage.png" id="1_tmc7s"]
+[ext_resource type="Texture2D" uid="uid://btb05caix716m" path="res://minigames/ratMinigame/imstilljustaratstuckinacage.png" id="1_tmc7s"]
 [ext_resource type="Script" path="res://minigames/ratMinigame/rat.gd" id="2_p20yq"]
-[ext_resource type="Texture2D" uid="uid://xwhjop3fyksd" path="res://minigames/ratMinigame/rat.png" id="3_5o42a"]
+[ext_resource type="Texture2D" uid="uid://ur2k3ufqpxv" path="res://minigames/ratMinigame/rat.png" id="3_5o42a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17t1y"]
 atlas = ExtResource("1_tmc7s")
@@ -135,3 +135,5 @@ texture = ExtResource("3_5o42a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rat"]
 shape = SubResource("RectangleShape2D_cq2cp")
+
+[connection signal="body_entered" from="cheems" to="." method="win"]

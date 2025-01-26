@@ -1,12 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=29 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
-[ext_resource type="Texture2D" uid="uid://b2ft2o043no4r" path="res://Main Scenes/char.png" id="2_ffthf"]
+[ext_resource type="Texture2D" uid="uid://b8hwg7mem5jqp" path="res://Main Scenes/char.png" id="2_ffthf"]
 [ext_resource type="Script" path="res://Main Scenes/at_ease.gd" id="3_yen8d"]
-[ext_resource type="Texture2D" uid="uid://vxbf4anldcc8" path="res://Main Scenes/thoughtbubble.png" id="4_ectlr"]
-[ext_resource type="Texture2D" uid="uid://3h3mexj6515b" path="res://Main Scenes/lock.png" id="4_nbtjs"]
-[ext_resource type="Texture2D" uid="uid://r7qiv0umswow" path="res://Main Scenes/table.png" id="5_154jg"]
+[ext_resource type="Texture2D" uid="uid://ff0eufg00mob" path="res://Main Scenes/yapping.png" id="4_685pg"]
+[ext_resource type="Texture2D" uid="uid://6g7j03s115ts" path="res://Main Scenes/thoughtbubble.png" id="4_ectlr"]
+[ext_resource type="Texture2D" uid="uid://ie453qsuv4bt" path="res://Main Scenes/lock.png" id="4_nbtjs"]
+[ext_resource type="Texture2D" uid="uid://dmamllu2r4guc" path="res://Main Scenes/table.png" id="5_154jg"]
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
+[ext_resource type="FontFile" uid="uid://d37w3nv5kugfs" path="res://assets/Fonts/Roboto-ExtraBold.ttf" id="5_pjqba"]
+[ext_resource type="FontFile" uid="uid://bem6nhbhqvubi" path="res://assets/Fonts/OleoScript-Bold.ttf" id="7_gpw82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
 atlas = ExtResource("1_ej1m3")
@@ -106,6 +109,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8287"]
+atlas = ExtResource("4_685pg")
+region = Rect2(0, 0, 650, 375)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sf5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8287")
+}],
+"loop": true,
+"name": &"speechBubble",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_26x5q"]
 atlas = ExtResource("4_ectlr")
 region = Rect2(1950, 0, 650, 375)
@@ -162,9 +180,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SystemFont" id="SystemFont_fguos"]
-font_italic = true
-
 [node name="Office" type="Node2D"]
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
@@ -190,6 +205,7 @@ loop = false
 script = SubResource("GDScript_ttk42")
 
 [node name="NPC" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D"]
+z_index = 5
 texture_filter = 1
 position = Vector2(-23, -49)
 scale = Vector2(3, 3)
@@ -198,11 +214,30 @@ animation = &"Rat"
 script = ExtResource("3_yen8d")
 speed = 100.0
 
-[node name="Speech" type="Sprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
-position = Vector2(51.3333, -33.3333)
+[node name="Speech" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
+visible = false
+z_index = 10
+position = Vector2(60.6667, -18.6667)
 scale = Vector2(0.2, 0.242)
+sprite_frames = SubResource("SpriteFrames_1sf5y")
+animation = &"speechBubble"
+
+[node name="Label" type="Label" parent="NPC/Path2D/PathFollow2D/NPC/Speech"]
+z_index = 10
+offset_left = -96.6667
+offset_top = -78.5124
+offset_right = 703.333
+offset_bottom = 371.488
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_pjqba")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Thought" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
+visible = false
 position = Vector2(69.3333, -50.6667)
 scale = Vector2(0.2, 0.242)
 sprite_frames = SubResource("SpriteFrames_f4arh")
@@ -228,13 +263,14 @@ metadata/_edit_use_anchors_ = true
 z_index = 10
 offset_left = 56.0
 offset_top = -105.0
-offset_right = 451.0
-offset_bottom = 91.0
-scale = Vector2(0.5, 0.5)
+offset_right = 856.0
+offset_bottom = 295.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_fguos")
-theme_override_font_sizes/font_size = 40
-text = "Man this mitch guys sucks at making speech bubbles"
+theme_override_fonts/font = ExtResource("7_gpw82")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="NPCSpawner" type="Timer" parent="."]

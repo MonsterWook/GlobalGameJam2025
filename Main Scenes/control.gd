@@ -8,7 +8,7 @@ var camZoomSpeed = Vector2(5, 5)
 var sceneChange = false
 var sceneChange2 = false
 var canClick = false
-var Offset = Vector2(40, 30)
+var Offset = Vector2(60, 60)
 var oldCamPos
 var currentNPC
 
@@ -30,11 +30,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if sceneChange:
-		if camera.zoom < Vector2(10, 10):
+		if camera.zoom < Vector2(9, 9):
 			camera.zoom += delta * camZoomSpeed
 		else:
-			#get_tree().root.add_child(minigameScene)
-			#get_tree().change_scene_to_file("res://minigames/typingMinigame/typingMinigame.tscn")
 			$"../../../../../..".visible = false
 			
 			get_tree().root.add_child(minigameScene)
@@ -90,7 +88,7 @@ func _on_click(NPC) -> void:
 		camera.global_position = global_position + Offset
 
 func switchMinigame():
-	currentNPC = "Climber"
+	
 	match(currentNPC):
 		"OfficeGuy":
 			minigameScene = load("res://minigames/typingMinigame/typingMinigame.tscn").instantiate()
@@ -106,3 +104,8 @@ func switchMinigame():
 			minigameScene = load("res://minigames/climberMinigame/climberMinigame.tscn").instantiate()
 			nodeWithSignalPath = "climberMinigame"
 			sceneNode = "climberMinigame"
+		
+		"Rat":
+			minigameScene = load("res://minigames/ratMinigame/ratMinigame.tscn").instantiate()
+			nodeWithSignalPath = "ratMinigame"
+			sceneNode = "ratMinigame"

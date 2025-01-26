@@ -10,6 +10,8 @@ var speechSprite
 var thoughtSprite : AnimatedSprite2D
 var background : AnimatedSprite2D
 var thoughtText : Label
+var speechText : Label
+var oldSpeechBubblePos
 var cursorSprite = load("res://assets/hoverCursor.png")
 var path: PathFollow2D
 var NPC
@@ -26,11 +28,12 @@ var lockedThoughtBubble
 var unlockedThoughtBubble
 var exitSpeechBubble1
 var exitSpeechBubble2
-var exitSpeechBubble3
 
 var NPCs = {
 	0 : "OfficeGuy",
 	1 : "Hustler",
+	2 : "Rat",
+	3 : "Climber"
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -40,6 +43,7 @@ func _ready() -> void:
 	thoughtSprite = $"Thought"
 	background = $"../../../../Background"
 	thoughtText = $Thought/Label
+	speechText = $Speech/Label
 	path = $".."
 	$"../../../../NPCSpawner".start()
 
@@ -82,19 +86,20 @@ func spawnCustomer() -> void:
 func entranceDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
-			speechSprite.set_texture(load(speechBubble1))
+			speechSprite.show()
+			speechText.text = speechBubble1
 			await firstBubble
 			entranceDialogue(1)
 		1:
-			speechSprite.set_texture(load(speechBubble2))
+			speechText.text = speechBubble2
 			await get_tree().create_timer(2).timeout
 			entranceDialogue(2)
 		2:
-			speechSprite.set_texture(load(speechBubble3))
+			speechText.text = speechBubble3
 			await get_tree().create_timer(2).timeout
 			entranceDialogue(3)
 		3:
-			speechSprite.set_texture(null)
+			speechSprite.hide()
 			thoughtSprite.show()
 			thoughtSprite.play("ThoughtBubbleForming")
 			await thoughtSprite.animation_finished
@@ -105,44 +110,74 @@ func exitDialogue(dialogueNumber):
 		0:
 			thoughtSprite.play("ThoughtBubble")
 			thoughtText.text = unlockedThoughtBubble
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(4).timeout
 			exitDialogue(1)
 		1:
 			thoughtSprite.hide()
-			speechSprite.position = Vector2(270, 133)
-			speechSprite.set_texture(load(exitSpeechBubble1))
-			await get_tree().create_timer(2).timeout
+			speechSprite.show()
+			oldSpeechBubblePos = speechSprite.position
+			speechSprite.position = Vector2(40, 40)
+			speechText.text = exitSpeechBubble1
+			await get_tree().create_timer(3).timeout
 			exitDialogue(2)
 		2:
-			speechSprite.position = Vector2(99.629, -154.319)
-			speechSprite.set_texture(load(exitSpeechBubble2))
+			speechSprite.position = oldSpeechBubblePos
+			speechText.text = exitSpeechBubble2
 			leave = true
 
 func switchNPC():
-	var inti = randi() % NPCs.size()
+	var oldNPC = NPC
+	var inti = randi() % (NPCs.size() - 1)
 	NPC = NPCs.get(inti)
 	
+	if NPC == oldNPC:
+		NPC = NPC.get(NPCs.size() - 1)
+	
+	if oldNPC == "Rat":
+		flip_h
+		
 	play(NPC)
 	
 	match(NPC):
 		"OfficeGuy":
 			
-			speechBubble1 = "res://assets/OfficeGuy/testSpeachBubble.png"
-			speechBubble2 = "res://assets/OfficeGuy/testSpeachBubble2.png"
-			speechBubble3 = "res://assets/OfficeGuy/testSpeachBubble3.png"
+			speechBubble1 = "I heard you are the best clairvoyant around"
+			speechBubble2 = "I am so tired of my dead end job"
+			speechBubble3 = "Please tell me how to get out of this meaningless life"
 			
-			unlockedThoughtBubble = ""
-			exitSpeechBubble1 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble2.png"
-			exitSpeechBubble2 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble3.png"
+			unlockedThoughtBubble = "I hope he tells me to buy bitcoin"
+			exitSpeechBubble1 = "You should buy some BubbleCoin. I heard it's popping off"
+			exitSpeechBubble2 = "Thanks! you are a gentleman and a scholar"
 		
 		"Hustler":
-			speechBubble1 = "res://assets/Hustler/hustlerEnterDialogue1.png"
-			speechBubble2 = "res://assets/Hustler/hustlerEnterDialogue2.png"
-			speechBubble3 = "res://assets/Hustler/hustlerEnterDialogue3.png"
+			speechBubble1 = "Haha, this reminds me of the good ol' days"
+			speechBubble2 = "I haven't been getting enough suckers to fall for my scams lately"
+			speechBubble3 = "What should I do doc'?"
 			
 			unlockedThoughtBubble = "I haven't done a card scam in a while"
-			exitSpeechBubble1 = "res://assets/Hustler/hustlerExitDialogue1.png"
-			exitSpeechBubble2 = "res://assets/Hustler/hustlerExitDialogue2.png"
+			exitSpeechBubble1 = "I heard about this new scam using cards, here let me fill you in"
+			exitSpeechBubble2 = "Ooh that's clever, you're the best doc'"
+			
+		"Rat":
+			flip_h
+			
+			speechBubble1 = ""
+			speechBubble2 = ""
+			speechBubble3 = ""
+			
+			unlockedThoughtBubble = ""
+			exitSpeechBubble1 = ""
+			exitSpeechBubble2 = ""
+
+		"Climber":
+			
+			speechBubble1 = ""
+			speechBubble2 = ""
+			speechBubble3 = ""
+			
+			unlockedThoughtBubble = ""
+			exitSpeechBubble1 = ""
+			exitSpeechBubble2 = ""
 
 func _fucking_leave() -> void:
 	exitDialogue(0)
