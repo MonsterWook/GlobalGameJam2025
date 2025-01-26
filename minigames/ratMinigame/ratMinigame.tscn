@@ -1,3 +1,137 @@
-[gd_scene format=3 uid="uid://bb2cuue4ddvi0"]
+[gd_scene load_steps=13 format=3 uid="uid://bb2cuue4ddvi0"]
+
+[ext_resource type="Script" path="res://minigames/ratMinigame/ratMinigame.gd" id="1_het8t"]
+[ext_resource type="Texture2D" uid="uid://tm0ud8fg0v3y" path="res://minigames/ratMinigame/imstilljustaratstuckinacage.png" id="1_tmc7s"]
+[ext_resource type="Script" path="res://minigames/ratMinigame/rat.gd" id="2_p20yq"]
+[ext_resource type="Texture2D" uid="uid://xwhjop3fyksd" path="res://minigames/ratMinigame/rat.png" id="3_5o42a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17t1y"]
+atlas = ExtResource("1_tmc7s")
+region = Rect2(0, 0, 198, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi7le"]
+atlas = ExtResource("1_tmc7s")
+region = Rect2(198, 0, 198, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06jfk"]
+atlas = ExtResource("1_tmc7s")
+region = Rect2(0, 0, 198, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qo3wm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17t1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi7le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17t1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi7le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17t1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi7le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17t1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi7le")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06jfk")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12w4e"]
+size = Vector2(135, 639)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oauk7"]
+size = Vector2(1084, 91)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb2yt"]
+radius = 57.0088
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cq2cp"]
+size = Vector2(28, 10)
 
 [node name="ratMinigame" type="Node2D"]
+script = ExtResource("1_het8t")
+
+[node name="bg" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_qo3wm")
+animation = &"arrow"
+frame = 2
+frame_progress = 0.696476
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="maze" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="maze"]
+polygon = PackedVector2Array(67, 62, 70, 56, 84, 58, 84, 87, 41, 181, 6, 209, -110, 239, -212, 237, -339, 201, -407, 118, -442, 13, -445, -34, -404, -140, -335, -201, -261, -229, -170, -236, -77, -237, 10, -207, 73, -128, 89, -80, 88, -38, 67, -48, 69, -91, 20, -164, -41, -207, -91, -219, -209, -213, -269, -208, -324, -181, -323, -162, -301, -149, -252, -170, -176, -183, -137, -181, -145, -165, -219, -162, -280, -140, -311, -114, -347, -70, -364, -22, -360, 19, -375, 23, -381, -28, -367, -80, -313, -135, -336, -160, -364, -157, -396, -112, -422, -46, -425, 20, -396, 98, -349, 168, -279, 202, -177, 225, -110, 223, -21, 196, 29, 169, 61, 107)
+
+[node name="maze2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="maze2"]
+polygon = PackedVector2Array(-83, -160, -70, -167, -14, -132, 8, -92, 20, -46, 29, -2, 25, 31, 17, 74, 8, 114, -11, 150, -55, 177, -101, 186, -125, 183, -123, 169, -92, 166, -53, 157, -16, 130, 0, 81, 11, 28, 9, -21, 0, -79, -31, -122, -67, -100, -53, -78, -57, -62, -106, -108, -140, -108, -141, -77, -103, -49, -86, -13, -91, 31, -118, 59, -146, 77, -196, 72, -236, 44, -249, 12, -235, -10, -227, 0, -234, 15, -217, 40, -195, 56, -163, 61, -123, 50, -102, 14, -99, -18, -116, -39, -140, -60, -186, -57, -196, -52, -211, -55, -180, -75, -160, -77, -159, -112, -197, -107, -248, -89, -297, -37, -295, 31, -275, 72, -260, 90, -206, 111, -132, 113, -81, 92, -55, 54, -41, -2, -29, 11, -41, 64, -76, 103, -134, 129, -194, 130, -274, 101, -301, 131, -254, 158, -181, 165, -175, 182, -229, 178, -296, 151, -347, 110, -357, 91, -341, 81, -327, 107, -317, 115, -299, 112, -288, 86, -307, 36, -314, -19, -304, -57, -249, -101, -209, -125, -150, -130, -103, -118, -80, -107, -49, -135)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D"]
+position = Vector2(554.5, -21.5)
+shape = SubResource("RectangleShape2D_12w4e")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D2"]
+position = Vector2(-559, -21)
+shape = SubResource("RectangleShape2D_12w4e")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Node"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D3"]
+position = Vector2(7, -311.5)
+shape = SubResource("RectangleShape2D_oauk7")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Node"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D4"]
+position = Vector2(2, 309)
+shape = SubResource("RectangleShape2D_oauk7")
+
+[node name="cheems" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cheems"]
+position = Vector2(-165, 0)
+shape = SubResource("CircleShape2D_hb2yt")
+
+[node name="rat" type="CharacterBody2D" parent="." groups=["player"]]
+z_index = 1
+position = Vector2(247, -6)
+script = ExtResource("2_p20yq")
+
+[node name="Sprite2D" type="Sprite2D" parent="rat"]
+texture_filter = 1
+texture = ExtResource("3_5o42a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rat"]
+shape = SubResource("RectangleShape2D_cq2cp")
