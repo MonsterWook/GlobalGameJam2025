@@ -1,0 +1,189 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm6kvcplt67qw"]
+
+[ext_resource type="PackedScene" uid="uid://dr84yay6bx0t1" path="res://minigames/cupMinigame/cup.tscn" id="1_aag0b"]
+[ext_resource type="Script" path="res://minigames/cupMinigame/cupMinigame.gd" id="1_cvur0"]
+[ext_resource type="Texture2D" uid="uid://cqmjqrry8k6ck" path="res://minigames/cupMinigame/ball.png" id="2_23hxq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfa8p"]
+size = Vector2(73, 78)
+
+[sub_resource type="Animation" id="Animation_k4mbv"]
+resource_name = "cupGame1"
+length = 6.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cupCorrect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(-2, -2, -2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(200, 250), Vector2(200, 100), Vector2(200, 100), Vector2(200, 250), Vector2(200, 250), Vector2(800, 250), Vector2(800, 250), Vector2(200, 250), Vector2(500, 250), Vector2(200, 250), Vector2(800, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cup1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(-2, -2, -2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(500, 250), Vector2(500, 100), Vector2(500, 100), Vector2(500, 250), Vector2(500, 250), Vector2(200, 250), Vector2(500, 250), Vector2(500, 250), Vector2(800, 250), Vector2(500, 250), Vector2(500, 250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cup2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(-2, -2, -2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(800, 250), Vector2(800, 100), Vector2(800, 100), Vector2(800, 250), Vector2(800, 250), Vector2(500, 250), Vector2(200, 250), Vector2(800, 250), Vector2(200, 250), Vector2(800, 250), Vector2(200, 250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ball:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.00999999, 2.51, 3.01, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(-2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(200, 290), Vector2(200, 290), Vector2(200, 290), Vector2(800, 290), Vector2(800, 290), Vector2(200, 290), Vector2(500, 290), Vector2(200, 290), Vector2(800, 290)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"setCanChoose"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fejin"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cupCorrect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cup1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cup2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(800, 250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ball:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 290)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_domsa"]
+_data = {
+"RESET": SubResource("Animation_fejin"),
+"cupGame1": SubResource("Animation_k4mbv")
+}
+
+[node name="cupMinigame" type="Node2D"]
+script = ExtResource("1_cvur0")
+
+[node name="Ball" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(200, 290)
+scale = Vector2(4, 4)
+texture = ExtResource("2_23hxq")
+
+[node name="cupCorrect" parent="." instance=ExtResource("1_aag0b")]
+position = Vector2(200, 250)
+scale = Vector2(2, 2)
+
+[node name="cupCorrectArea" type="Area2D" parent="cupCorrect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cupCorrect/cupCorrectArea"]
+shape = SubResource("RectangleShape2D_xfa8p")
+
+[node name="cup1" parent="." instance=ExtResource("1_aag0b")]
+position = Vector2(500, 250)
+scale = Vector2(2, 2)
+
+[node name="wrongArea1" type="Area2D" parent="cup1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cup1/wrongArea1"]
+shape = SubResource("RectangleShape2D_xfa8p")
+
+[node name="cup2" parent="." instance=ExtResource("1_aag0b")]
+position = Vector2(800, 250)
+scale = Vector2(2, 2)
+
+[node name="wrongArea2" type="Area2D" parent="cup2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cup2/wrongArea2"]
+shape = SubResource("RectangleShape2D_xfa8p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_domsa")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+z_as_relative = false
+offset_right = 994.0
+offset_bottom = 538.0
+mouse_filter = 2
+color = Color(0.238, 0.2597, 0.28, 1)
+
+[connection signal="mouse_entered" from="cupCorrect/cupCorrectArea" to="." method="onMouseEnterCup" binds= [true, "cupCorrect"]]
+[connection signal="mouse_exited" from="cupCorrect/cupCorrectArea" to="." method="onMouseExitCup"]
+[connection signal="mouse_entered" from="cup1/wrongArea1" to="." method="onMouseEnterCup" binds= [false, "cup1"]]
+[connection signal="mouse_exited" from="cup1/wrongArea1" to="." method="onMouseExitCup"]
+[connection signal="mouse_entered" from="cup2/wrongArea2" to="." method="onMouseEnterCup" binds= [false, "cup2"]]
+[connection signal="mouse_exited" from="cup2/wrongArea2" to="." method="onMouseExitCup"]
