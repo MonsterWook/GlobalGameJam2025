@@ -1,10 +1,13 @@
 extends Control
 
-@onready var camera: Camera2D = $"../../../Camera2D"
+@onready var camera: Camera2D = $"../../../../../../Camera2D"
 
-var camZoomSpeed = Vector2(3, 3)
+var camZoomSpeed = Vector2(5, 5)
 var sceneChange = false
+var sceneChange2 = false
 var canClick = false
+var Offset = Vector2(40, 30)
+var oldCamPos
 
 var minigameScene = preload("res://minigames/typingMinigame/typingMinigame.tscn").instantiate()
 
@@ -15,11 +18,20 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if sceneChange:
-		if camera.zoom <= Vector2(10, 10):
+		if camera.zoom < Vector2(10, 10):
 			camera.zoom += delta * camZoomSpeed
 		else:
 			#get_tree().root.add_child(minigameScene)
-			get_tree().change_scene_to_file("res://minigames/typingMinigame/typingMinigame.tscn")
+			#get_tree().change_scene_to_file("res://minigames/typingMinigame/typingMinigame.tscn")
+			$"../../../../../..".visible = false
+			get_tree().root.add_child(minigameScene)
+			sceneChange = false
+			camera.global_position = oldCamPos
+			sceneChange2 = true
+
+	if sceneChange2:
+		if camera.zoom > Vector2(1, 1):
+			camera.zoom -= delta * camZoomSpeed
 
 
 func _on_mouse_entered() -> void:
@@ -35,5 +47,5 @@ func _on_mouse_exited() -> void:
 func _on_click() -> void:
 	if (canClick):
 		sceneChange = true
-		var Offset = Vector2(40, 30)
+		oldCamPos = camera.global_position
 		camera.global_position = global_position + Offset
