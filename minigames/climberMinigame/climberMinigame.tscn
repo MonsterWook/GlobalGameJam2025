@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgu6n6c6l6ok6"]
+[gd_scene load_steps=13 format=3 uid="uid://d1dq56mx6o3i6"]
 
 [ext_resource type="Script" path="res://minigames/climberMinigame/climberMinigame.gd" id="1_1pbhp"]
 [ext_resource type="Script" path="res://minigames/climberMinigame/climber.gd" id="1_twjvh"]

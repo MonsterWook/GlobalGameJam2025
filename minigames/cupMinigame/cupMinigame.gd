@@ -1,6 +1,7 @@
 extends Node2D
 
-signal changeScene
+signal changeSceneWin
+signal changeSceneLose
 
 var correctCup: bool = false
 var canClick: bool = false
@@ -22,10 +23,12 @@ func _process(delta):
 		tween.tween_property(cup, "position:y", 100, 1)
 		if correctCup:
 			print("correct")
+			await get_tree().create_timer(1).timeout
+			changeSceneWin.emit()
 		else:
 			print("wrong")
-		await get_tree().create_timer(1).timeout
-		changeScene.emit()
+			await get_tree().create_timer(1).timeout
+			changeSceneLose.emit()
 
 func onMouseExitCup():
 	canClick = false

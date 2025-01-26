@@ -3,6 +3,7 @@ extends Sprite2D
 @export var speed = 0.25
 
 signal click(mousePos)
+signal readyForNPC
 
 var speechSprite
 var thoughtSprite
@@ -28,7 +29,6 @@ var exitSpeechBubble3
 var NPCs = {
 	0 : "OfficeGuy",
 	1 : "Hustler",
-	2 : "Rat"
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 			leavingDoor = true
 			hide()
 			$"../../../../NPCSpawner".start()
+			readyForNPC.emit()
 	
 	if Input.is_action_just_pressed("LeftClick"):
 		click.emit(NPC)
@@ -95,28 +96,23 @@ func entranceDialogue(dialogueNumber):
 func exitDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
-			thoughtSprite.settexture(load(unlockedThoughtBubble))
-			await get_tree().create_timer(4).timeout
+			thoughtSprite.set_texture(load(unlockedThoughtBubble))
+			await get_tree().create_timer(3).timeout
+			exitDialogue(1)
 		1:
 			thoughtSprite.set_texture(null)
+			speechSprite.position = Vector2(270, 133)
 			speechSprite.set_texture(load(exitSpeechBubble1))
 			await get_tree().create_timer(2).timeout
-			exitDialogue(1)
-		2:
-			speechSprite.position = Vector2(270, 133)
-			speechSprite.set_texture(load(exitSpeechBubble2))
-			await get_tree().create_timer(2).timeout
 			exitDialogue(2)
-		3:
+		2:
 			speechSprite.position = Vector2(99.629, -154.319)
-			speechSprite.set_texture(load(exitSpeechBubble3))
+			speechSprite.set_texture(load(exitSpeechBubble2))
 			leave = true
 
 func switchNPC():
-	NPC = NPCs.get(randi() % NPCs.size())
-	
-	"""FOR NOW"""
-	NPC = "OfficeGuy"
+	var inti = randi() % NPCs.size()
+	NPC = NPCs.get(inti)
 	
 	match(NPC):
 		"OfficeGuy":
@@ -126,9 +122,18 @@ func switchNPC():
 			lockedThoughtBubble = "res://assets/OfficeGuy/lockedThoughtBubble.png"
 			
 			unlockedThoughtBubble = "res://assets/OfficeGuy/unlockedThoughtBubble.png"
-			exitSpeechBubble1 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble1.png"
-			exitSpeechBubble2 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble2.png"
-			exitSpeechBubble3 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble3.png"
+			exitSpeechBubble1 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble2.png"
+			exitSpeechBubble2 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble3.png"
+		
+		"Hustler":
+			speechBubble1 = "res://assets/Hustler/hustlerEnterDialogue1.png"
+			speechBubble2 = "res://assets/Hustler/hustlerEnterDialogue2.png"
+			speechBubble3 = "res://assets/Hustler/hustlerEnterDialogue3.png"
+			lockedThoughtBubble = "res://assets/lockedThoughtBubble.png"
+			
+			unlockedThoughtBubble = "res://assets/Hustler/hustlerUnlockedThoughtBubble.png"
+			exitSpeechBubble1 = "res://assets/Hustler/hustlerExitDialogue1.png"
+			exitSpeechBubble2 = "res://assets/Hustler/hustlerExitDialogue2.png"
 
 func _fucking_leave() -> void:
 	exitDialogue(0)

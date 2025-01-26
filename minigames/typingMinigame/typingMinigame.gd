@@ -1,6 +1,7 @@
 extends RichTextLabel
 
-signal changeScene
+signal changeSceneWin
+signal changeSceneLose
 
 @export var randomTexts: Array[String] = ["Make More Text Prompts!"]
 var textToBeTyped: String = ""
@@ -25,7 +26,7 @@ func _process(delta):
 		bg.play("Finished")
 		
 		await get_tree().create_timer(2).timeout
-		changeScene.emit()
+		changeSceneWin.emit()
 
 func _unhandled_input(event):
 	if isWrong or currentChar >= textToBeTyped.length():

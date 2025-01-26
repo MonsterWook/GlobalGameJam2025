@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfe8w73e1a6i"
-path="res://.godot/imported/hustlerExitDialogue1.png-f03c99ea533377f10d7cb81a4c054bff.ctex"
+path="res://.godot/imported/hustlerExitDialogue1.png-1d04100ee01324c77935bfa5cb6f1109.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/OfficeGuy/hustlerExitDialogue1.png"
-dest_files=["res://.godot/imported/hustlerExitDialogue1.png-f03c99ea533377f10d7cb81a4c054bff.ctex"]
+source_file="res://assets/Hustler/hustlerExitDialogue1.png"
+dest_files=["res://.godot/imported/hustlerExitDialogue1.png-1d04100ee01324c77935bfa5cb6f1109.ctex"]
 
 [params]
 

@@ -38,7 +38,8 @@ func _process(delta: float) -> void:
 			$"../../../../../..".visible = false
 			
 			get_tree().root.add_child(minigameScene)
-			get_tree().root.get_node(nodeWithSignalPath).changeScene.connect(_on_minigame_complete)
+			get_tree().root.get_node(nodeWithSignalPath).changeSceneWin.connect(_on_minigame_complete_win)
+			get_tree().root.get_node(nodeWithSignalPath).changeSceneLose.connect(_on_minigame_complete_lose)
 			sceneChange = false
 			camera.position = oldCamPos
 			sceneChange2 = true
@@ -48,8 +49,11 @@ func _process(delta: float) -> void:
 			camera.zoom -= delta * camZoomSpeed
 		else:
 			sceneChange2 = false
-			print(camera.zoom)
 			camera.zoom = Vector2(1, 1)
+
+func _on_ready_for_NPC() -> void:
+	$".".mouse_entered.connect(_on_mouse_entered)
+	$".".mouse_exited.connect(_on_mouse_exited)
 
 func _on_mouse_entered() -> void:
 	canClick = true
@@ -59,12 +63,23 @@ func _on_mouse_exited() -> void:
 	canClick = false
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
-func _on_minigame_complete() -> void:
+func _on_minigame_complete_win() -> void:
 	get_tree().root.get_node(sceneNode).queue_free()
 	$"../../../../../..".visible = true
-	camera.zoom = Vector2(10, 10)
 	sceneChange2 = true
+	$".".mouse_entered.disconnect(_on_mouse_entered)
+	$".".mouse_exited.disconnect(_on_mouse_exited)
 	FUCKING_LEAVE.emit()
+	camera.zoom = Vector2(10, 10)
+
+func _on_minigame_complete_lose() -> void:
+	get_tree().root.get_node(sceneNode).queue_free()
+	$"../../../../../..".visible = true
+	sceneChange2 = true
+	$".".mouse_entered.disconnect(_on_mouse_entered)
+	$".".mouse_exited.disconnect(_on_mouse_exited)
+	FUCKING_LEAVE.emit()
+	camera.zoom = Vector2(10, 10)
 
 func _on_click(NPC) -> void:
 	if (canClick):
@@ -75,7 +90,7 @@ func _on_click(NPC) -> void:
 		camera.global_position = global_position + Offset
 
 func switchMinigame():
-	
+	currentNPC = "Climber"
 	match(currentNPC):
 		"OfficeGuy":
 			minigameScene = load("res://minigames/typingMinigame/typingMinigame.tscn").instantiate()
@@ -86,3 +101,8 @@ func switchMinigame():
 			minigameScene = load("res://minigames/cupMinigame/cupMinigame.tscn").instantiate()
 			nodeWithSignalPath = "cupMinigame"
 			sceneNode = "cupMinigame"
+			
+		"Climber":
+			minigameScene = load("res://minigames/climberMinigame/climberMinigame.tscn").instantiate()
+			nodeWithSignalPath = "climberMinigame"
+			sceneNode = "climberMinigame"

@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=10 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
 [ext_resource type="Texture2D" uid="uid://dec0vh6hd2g04" path="res://assets/atEase.png" id="2_wi0vg"]
 [ext_resource type="Script" path="res://Main Scenes/at_ease.gd" id="3_yen8d"]
-[ext_resource type="Texture2D" path="res://assets/lockedThoughtBubble.png" id="4_il0f3"]
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
@@ -91,7 +90,6 @@ scale = Vector2(0.474, 0.572)
 [node name="Thought" type="Sprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
 position = Vector2(115, -180)
 scale = Vector2(0.474089, 0.571681)
-texture = ExtResource("4_il0f3")
 
 [node name="Control" type="Control" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 layout_mode = 3
@@ -115,6 +113,7 @@ one_shot = true
 
 [connection signal="timeout" from="Background/Door" to="NPC/Path2D/PathFollow2D/NPC" method="_close_door"]
 [connection signal="click" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_click"]
+[connection signal="readyForNPC" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_ready_for_NPC"]
 [connection signal="FUCKING_LEAVE" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC" method="_fucking_leave"]
 [connection signal="mouse_entered" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_exited"]
