@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://d01sv73aw0ny3"]
+
+[ext_resource type="Script" path="res://Main Scenes/mainMenu.gd" id="1_s6c62"]
+[ext_resource type="Texture2D" uid="uid://bcdpjgaq8dfpj" path="res://Main Scenes/bubble.png" id="2_d6aok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axcsv"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va06x"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhplw"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuijv"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bm4u"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buaup"]
+atlas = ExtResource("2_d6aok")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2b1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axcsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va06x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhplw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuijv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bm4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buaup")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_myeod"]
+resource_name = "intro"
+length = 50.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8, 8.5, 16, 16.5, 23, 23.5, 31, 31.5, 39, 39.5, 47, 47.5),
+"transitions": PackedFloat32Array(1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(373, 368), Vector2(373, -400), Vector2(-100, 368), Vector2(-100, -400), Vector2(350, 368), Vector2(350, -400), Vector2(-300, 368), Vector2(-300, -400), Vector2(350, 368), Vector2(350, -400), Vector2(0, 368), Vector2(0, -400), Vector2(350, 368)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12, 12.5, 19, 19.5, 24, 24.5, 34, 34.5, 45, 45.5),
+"transitions": PackedFloat32Array(1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(-343, 367), Vector2(-349, -400), Vector2(250, 364), Vector2(250, -400), Vector2(-450, 364), Vector2(-450, -400), Vector2(-450, 364), Vector2(100, -400), Vector2(-100, 364), Vector2(-100, -400), Vector2(100, 364)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubble3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 5.5, 15, 15.5, 29, 29.5, 43, 43.5),
+"transitions": PackedFloat32Array(1, 1e-05, 1, 1e-05, 1, 1e-05, 1, 1e-05, 1),
+"update": 0,
+"values": [Vector2(1, 372), Vector2(0, -400), Vector2(-250, 368), Vector2(-250, -400), Vector2(200, 368), Vector2(200, -400), Vector2(-300, 368), Vector2(-400, -400), Vector2(-300, 368)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7, 11, 17, 22, 30, 37, 44, 50),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"progressText"
+}, {
+"args": [],
+"method": &"startGame"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_01rrj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(373, 368)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-343, 367)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubble3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 372)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37h67"]
+_data = {
+"RESET": SubResource("Animation_01rrj"),
+"intro": SubResource("Animation_myeod")
+}
+
+[node name="mainMenu" type="Node2D"]
+script = ExtResource("1_s6c62")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -577.0
+offset_top = -350.0
+offset_right = 557.0
+offset_bottom = 339.0
+color = Color(0, 0, 0, 1)
+
+[node name="bubble1" type="AnimatedSprite2D" parent="."]
+position = Vector2(373, 368)
+sprite_frames = SubResource("SpriteFrames_a2b1s")
+frame = 1
+frame_progress = 0.509866
+
+[node name="bubble2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-343, 367)
+sprite_frames = SubResource("SpriteFrames_a2b1s")
+frame = 1
+frame_progress = 0.818664
+
+[node name="bubble3" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 372)
+sprite_frames = SubResource("SpriteFrames_a2b1s")
+frame = 1
+frame_progress = 0.818664
+
+[node name="VA" type="Label" parent="."]
+offset_left = -354.0
+offset_top = -238.0
+offset_right = 396.0
+offset_bottom = 233.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_37h67")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
