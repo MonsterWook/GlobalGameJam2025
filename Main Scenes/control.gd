@@ -1,5 +1,7 @@
 extends Control
 
+signal FUCKING_LEAVE
+
 @onready var camera: Camera2D = $"../../../../../../Camera2D"
 
 var camZoomSpeed = Vector2(5, 5)
@@ -25,6 +27,7 @@ func _process(delta: float) -> void:
 			#get_tree().change_scene_to_file("res://minigames/typingMinigame/typingMinigame.tscn")
 			$"../../../../../..".visible = false
 			get_tree().root.add_child(minigameScene)
+			get_tree().root.get_node("typingMinigame/text").changeScene.connect(_on_minigame_complete)
 			sceneChange = false
 			camera.global_position = oldCamPos
 			sceneChange2 = true
@@ -32,6 +35,8 @@ func _process(delta: float) -> void:
 	if sceneChange2:
 		if camera.zoom > Vector2(1, 1):
 			camera.zoom -= delta * camZoomSpeed
+		else:
+			sceneChange2 = false
 
 
 func _on_mouse_entered() -> void:
@@ -43,6 +48,12 @@ func _on_mouse_exited() -> void:
 	canClick = false
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
+func _on_minigame_complete() -> void:
+	get_tree().root.get_node("typingMinigame").queue_free()
+	$"../../../../../..".visible = true
+	camera.zoom = Vector2(10, 10)
+	sceneChange2 = true
+	FUCKING_LEAVE.emit()
 
 func _on_click() -> void:
 	if (canClick):

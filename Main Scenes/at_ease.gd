@@ -88,7 +88,7 @@ func exitDialogue(dialogueNumber):
 	match(dialogueNumber):
 		0:
 			speechSprite.set_texture(load(exitSpeechBubble1))
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(4).timeout
 			exitDialogue(1)
 		1:
 			speechSprite.position = Vector2(270, 133)
@@ -117,6 +117,8 @@ func switchNPC():
 			exitSpeechBubble2 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble2.png"
 			exitSpeechBubble3 = "res://assets/OfficeGuy/officeGuyLeavingSpeechBubble3.png"
 
+func _fucking_leave() -> void:
+	exitDialogue(0)
 
 func _close_door() -> void:
 	background.play("closed")
