@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1dq56mx6o3i6"]
+[gd_scene load_steps=13 format=3 uid="uid://dgu6n6c6l6ok6"]
 
 [ext_resource type="Script" path="res://minigames/climberMinigame/climberMinigame.gd" id="1_1pbhp"]
 [ext_resource type="Script" path="res://minigames/climberMinigame/climber.gd" id="1_twjvh"]
@@ -32,7 +32,7 @@ size = Vector2(1571, 189)
 [node name="climberMinigame" type="Node2D"]
 script = ExtResource("1_1pbhp")
 
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(-373, 167)
 floor_stop_on_slope = false
 floor_max_angle = 1.55334
