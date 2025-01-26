@@ -71,5 +71,6 @@ offset_bottom = -70.0
 bbcode_enabled = true
 text = "This is test text"
 script = ExtResource("1_ee23r")
+randomTexts = Array[String](["GGJ2025 was a fun but stressful experience", "Let me out!", "Hang in there the week is almost over", "work work work work work work", "You dont need to know how to code to make a game"])
 
 [node name="Camera2D" type="Camera2D" parent="."]

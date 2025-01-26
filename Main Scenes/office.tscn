@@ -1,11 +1,11 @@
 [gd_scene load_steps=25 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
-[ext_resource type="Texture2D" uid="uid://b8hwg7mem5jqp" path="res://Main Scenes/char.png" id="2_ffthf"]
+[ext_resource type="Texture2D" uid="uid://b2ft2o043no4r" path="res://Main Scenes/char.png" id="2_ffthf"]
 [ext_resource type="Script" path="res://Main Scenes/at_ease.gd" id="3_yen8d"]
-[ext_resource type="Texture2D" uid="uid://6g7j03s115ts" path="res://Main Scenes/thoughtbubble.png" id="4_ectlr"]
-[ext_resource type="Texture2D" uid="uid://ie453qsuv4bt" path="res://Main Scenes/lock.png" id="4_nbtjs"]
-[ext_resource type="Texture2D" uid="uid://dmamllu2r4guc" path="res://Main Scenes/table.png" id="5_154jg"]
+[ext_resource type="Texture2D" uid="uid://vxbf4anldcc8" path="res://Main Scenes/thoughtbubble.png" id="4_ectlr"]
+[ext_resource type="Texture2D" uid="uid://3h3mexj6515b" path="res://Main Scenes/lock.png" id="4_nbtjs"]
+[ext_resource type="Texture2D" uid="uid://r7qiv0umswow" path="res://Main Scenes/table.png" id="5_154jg"]
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
@@ -203,11 +203,10 @@ position = Vector2(51.3333, -33.3333)
 scale = Vector2(0.2, 0.242)
 
 [node name="Thought" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
-visible = false
 position = Vector2(69.3333, -50.6667)
 scale = Vector2(0.2, 0.242)
 sprite_frames = SubResource("SpriteFrames_f4arh")
-animation = &"LockedThoughtBubble"
+animation = &"ThoughtBubble"
 
 [node name="Control" type="Control" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 layout_mode = 3
@@ -228,14 +227,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 z_index = 10
 offset_left = 56.0
-offset_top = -104.857
-offset_right = 96.0
-offset_bottom = -81.8566
-scale = Vector2(4.76666, 1.65902)
+offset_top = -105.0
+offset_right = 451.0
+offset_bottom = 91.0
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_fguos")
-theme_override_font_sizes/font_size = 50
-autowrap_mode = 1
+theme_override_font_sizes/font_size = 40
+text = "Man this mitch guys sucks at making speech bubbles"
+autowrap_mode = 2
 
 [node name="NPCSpawner" type="Timer" parent="."]
 wait_time = 2.0

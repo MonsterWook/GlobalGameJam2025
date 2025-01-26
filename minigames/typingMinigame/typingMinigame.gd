@@ -3,7 +3,7 @@ extends RichTextLabel
 signal changeSceneWin
 signal changeSceneLose
 
-@export var randomTexts: Array[String] = ["Make More Text Prompts!"]
+@export var randomTexts: Array[String] = ["Test"]
 var textToBeTyped: String = ""
 var currentChar: int = 0
 
