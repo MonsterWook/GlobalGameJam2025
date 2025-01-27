@@ -1,9 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1dq56mx6o3i6"]
+[gd_scene load_steps=15 format=3 uid="uid://d1dq56mx6o3i6"]
 
 [ext_resource type="Script" path="res://minigames/climberMinigame/climberMinigame.gd" id="1_1pbhp"]
 [ext_resource type="Script" path="res://minigames/climberMinigame/climber.gd" id="1_twjvh"]
-[ext_resource type="Texture2D" uid="uid://bq3slbrt7pnw5" path="res://assets/Concept.png" id="2_f18gt"]
+[ext_resource type="Texture2D" uid="uid://b2ft2o043no4r" path="res://Main Scenes/char.png" id="3_cyakd"]
 [ext_resource type="Texture2D" uid="uid://bmthvt1rl4d7t" path="res://minigames/climberMinigame/climbingBG.png" id="3_oyk5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u3k0"]
+atlas = ExtResource("3_cyakd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo5pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u3k0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg05f"]
 radius = 26.3059
@@ -33,7 +48,7 @@ size = Vector2(1571, 189)
 script = ExtResource("1_1pbhp")
 
 [node name="player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(-373, 167)
+position = Vector2(-380, 189)
 floor_stop_on_slope = false
 floor_max_angle = 1.55334
 script = ExtResource("1_twjvh")
@@ -42,9 +57,10 @@ jumpStrength = 550.0
 acceleration = 100
 friction = 30
 
-[node name="Sprite2D" type="Sprite2D" parent="player"]
-scale = Vector2(-0.04, -0.08)
-texture = ExtResource("2_f18gt")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="player"]
+z_index = 5
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_oo5pr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 shape = SubResource("CircleShape2D_wg05f")
