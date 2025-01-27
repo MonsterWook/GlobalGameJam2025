@@ -32,6 +32,8 @@ var exitSpeechBubble2
 var exitSpeechBubbleLost1
 var exitSpeechBubbleLost2
 
+var tutorialText
+
 var NPCs = {
 	0 : "OfficeGuy",
 	1 : "Hustler",
@@ -47,7 +49,10 @@ func _ready() -> void:
 	background = $"../../../../Background"
 	thoughtText = $Thought/Label
 	speechText = $Speech/Label
+	tutorialText = $"../../../../tutorial"
 	path = $".."
+	tutorialText.show()
+	await get_tree().create_timer(1).timeout
 	$"../../../../NPCSpawner".start()
 
 
@@ -81,6 +86,7 @@ func _process(delta: float) -> void:
 		click.emit(NPC)
 
 func spawnCustomer() -> void:
+	tutorialText.hide()
 	switchNPC()
 	show()
 	background.play("opened")
