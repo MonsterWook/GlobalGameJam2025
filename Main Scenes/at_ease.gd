@@ -33,6 +33,7 @@ var exitSpeechBubbleLost1
 var exitSpeechBubbleLost2
 
 var tutorialText
+var tutorial = true
 
 var NPCs = {
 	0 : "OfficeGuy",
@@ -51,8 +52,6 @@ func _ready() -> void:
 	speechText = $Speech/Label
 	tutorialText = $"../../../../tutorial"
 	path = $".."
-	tutorialText.show()
-	await get_tree().create_timer(1).timeout
 	$"../../../../NPCSpawner".start()
 
 
@@ -111,9 +110,12 @@ func entranceDialogue(dialogueNumber):
 			entranceDialogue(3)
 		3:
 			speechSprite.hide()
-			thoughtSprite.play("ThoughtBubbleForming")
 			thoughtSprite.show()
+			thoughtSprite.play("ThoughtBubbleForming")
 			await thoughtSprite.animation_finished
+			if tutorial:
+				tutorialText.show()
+				tutorial = false
 			thoughtSprite.play("LockedThoughtBubble")
 
 func exitDialogueWon(dialogueNumber):
@@ -124,7 +126,13 @@ func exitDialogueWon(dialogueNumber):
 			await get_tree().create_timer(4).timeout
 			exitDialogueWon(1)
 		1:
+			thoughtText.text = ""
+			var oldthoughtSpritePos = thoughtSprite.position
+			thoughtSprite.position = Vector2(100, -60)
+			thoughtSprite.play("ThoughtBubblePopping")
+			await thoughtSprite.animation_finished
 			thoughtSprite.hide()
+			thoughtSprite.position = oldthoughtSpritePos
 			speechSprite.show()
 			oldSpeechBubblePos = speechSprite.position
 			speechSprite.position = Vector2(60, 40)
@@ -143,7 +151,13 @@ func exitDialogueLost(dialogueNumber):
 			await thoughtSprite.animation_finished
 			exitDialogueLost(1)
 		1:
+			thoughtText.text = ""
+			var oldthoughtSpritePos = thoughtSprite.position
+			thoughtSprite.position = Vector2(100, -60)
+			thoughtSprite.play("ThoughtBubblePopping")
+			await thoughtSprite.animation_finished
 			thoughtSprite.hide()
+			thoughtSprite.position = oldthoughtSpritePos
 			speechSprite.show()
 			oldSpeechBubblePos = speechSprite.position
 			speechSprite.position = Vector2(60, 40)
@@ -223,3 +237,6 @@ func _fucking_leave(won) -> void:
 
 func _close_door() -> void:
 	background.play("closed")
+
+func _on_accepted_click() -> void:
+	tutorialText.hide()

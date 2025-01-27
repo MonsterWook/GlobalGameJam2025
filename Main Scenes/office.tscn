@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=36 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
 [ext_resource type="Texture2D" uid="uid://b8hwg7mem5jqp" path="res://Main Scenes/char.png" id="2_ffthf"]
@@ -153,6 +153,22 @@ region = Rect2(1300, 0, 650, 375)
 atlas = ExtResource("4_ectlr")
 region = Rect2(1950, 0, 650, 375)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8rey"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(2600, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcmfl"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(3250, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bx7q"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(3900, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujc4j"]
+atlas = ExtResource("4_ectlr")
+region = Rect2(4550, 0, 650, 375)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_f4arh"]
 animations = [{
 "frames": [{
@@ -164,6 +180,36 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_erahl")
 }, {
@@ -221,6 +267,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"ThoughtBubbleForming",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8rey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcmfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bx7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujc4j")
+}],
+"loop": false,
+"name": &"ThoughtBubblePopping",
 "speed": 5.0
 }]
 
@@ -285,7 +348,7 @@ visible = false
 position = Vector2(69.3333, -50.6667)
 scale = Vector2(0.2, 0.242)
 sprite_frames = SubResource("SpriteFrames_f4arh")
-animation = &"ThoughtBubble"
+animation = &"LockedThoughtBubbleLost"
 
 [node name="Control" type="Control" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 layout_mode = 3
@@ -317,6 +380,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Node" type="Node2D" parent="NPC/Path2D/PathFollow2D/NPC"]
+position = Vector2(100, -60)
+scale = Vector2(0.333333, 0.333333)
+
 [node name="NPCSpawner" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -340,6 +407,7 @@ text = "Click on the character's thought bubble to help them!"
 [connection signal="click" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_click"]
 [connection signal="readyForNPC" from="NPC/Path2D/PathFollow2D/NPC" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_ready_for_NPC"]
 [connection signal="FUCKING_LEAVE" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC" method="_fucking_leave"]
+[connection signal="acceptedClick" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC" method="_on_accepted_click"]
 [connection signal="mouse_entered" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NPC/Path2D/PathFollow2D/NPC/Thought/Control" to="NPC/Path2D/PathFollow2D/NPC/Thought/Control" method="_on_mouse_exited"]
 [connection signal="timeout" from="NPCSpawner" to="NPC/Path2D/PathFollow2D/NPC" method="spawnCustomer"]

@@ -1,6 +1,7 @@
 extends Control
 
 signal FUCKING_LEAVE
+signal acceptedClick
 
 @onready var camera: Camera2D = $"../../../../../../Camera2D"
 
@@ -81,6 +82,7 @@ func _on_minigame_complete_lose() -> void:
 
 func _on_click(NPC) -> void:
 	if (canClick):
+		acceptedClick.emit()
 		sceneChange = true
 		currentNPC = NPC
 		switchMinigame()
