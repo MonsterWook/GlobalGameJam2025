@@ -67,7 +67,7 @@ func _on_minigame_complete_win() -> void:
 	sceneChange2 = true
 	$".".mouse_entered.disconnect(_on_mouse_entered)
 	$".".mouse_exited.disconnect(_on_mouse_exited)
-	FUCKING_LEAVE.emit()
+	FUCKING_LEAVE.emit(true)
 	camera.zoom = Vector2(10, 10)
 
 func _on_minigame_complete_lose() -> void:
@@ -76,7 +76,7 @@ func _on_minigame_complete_lose() -> void:
 	sceneChange2 = true
 	$".".mouse_entered.disconnect(_on_mouse_entered)
 	$".".mouse_exited.disconnect(_on_mouse_exited)
-	FUCKING_LEAVE.emit()
+	FUCKING_LEAVE.emit(false)
 	camera.zoom = Vector2(10, 10)
 
 func _on_click(NPC) -> void:

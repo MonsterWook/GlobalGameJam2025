@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://clj25w4vcne7q"]
+[gd_scene load_steps=32 format=3 uid="uid://clj25w4vcne7q"]
 
 [ext_resource type="Texture2D" uid="uid://byspfak36ais0" path="res://Main Scenes/officeSheet.png" id="1_ej1m3"]
 [ext_resource type="Texture2D" uid="uid://b8hwg7mem5jqp" path="res://Main Scenes/char.png" id="2_ffthf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Main Scenes/control.gd" id="5_ih2oa"]
 [ext_resource type="FontFile" uid="uid://d37w3nv5kugfs" path="res://assets/Fonts/Roboto-ExtraBold.ttf" id="5_pjqba"]
 [ext_resource type="FontFile" uid="uid://bem6nhbhqvubi" path="res://assets/Fonts/OleoScript-Bold.ttf" id="7_gpw82"]
+[ext_resource type="Texture2D" uid="uid://dpifugp607q2q" path="res://Main Scenes/fuckyoulock.png" id="7_qyv04"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_domwp"]
 atlas = ExtResource("1_ej1m3")
@@ -124,6 +125,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_erahl"]
+atlas = ExtResource("7_qyv04")
+region = Rect2(0, 0, 650, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vchg"]
+atlas = ExtResource("4_nbtjs")
+region = Rect2(0, 0, 650, 375)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_26x5q"]
 atlas = ExtResource("4_ectlr")
 region = Rect2(1950, 0, 650, 375)
@@ -152,6 +161,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"LockedThoughtBubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vchg")
+}],
+"loop": false,
+"name": &"LockedThoughtBubbleLost",
 "speed": 5.0
 }, {
 "frames": [{
@@ -217,8 +261,8 @@ speed = 100.0
 [node name="Speech" type="AnimatedSprite2D" parent="NPC/Path2D/PathFollow2D/NPC"]
 visible = false
 z_index = 10
-position = Vector2(60.6667, -18.6667)
-scale = Vector2(0.2, 0.242)
+position = Vector2(71, -24.6667)
+scale = Vector2(0.25, 0.302)
 sprite_frames = SubResource("SpriteFrames_1sf5y")
 animation = &"speechBubble"
 
@@ -226,9 +270,9 @@ animation = &"speechBubble"
 z_index = 10
 offset_left = -96.6667
 offset_top = -78.5124
-offset_right = 703.333
-offset_bottom = 371.488
-scale = Vector2(0.3, 0.3)
+offset_right = 903.333
+offset_bottom = 421.488
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_pjqba")
 theme_override_font_sizes/font_size = 100
@@ -261,10 +305,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="NPC/Path2D/PathFollow2D/NPC/Thought"]
 z_index = 10
-offset_left = 56.0
-offset_top = -105.0
-offset_right = 856.0
-offset_bottom = 295.0
+offset_left = 53.3335
+offset_top = -115.702
+offset_right = 853.333
+offset_bottom = 384.298
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_gpw82")
