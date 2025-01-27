@@ -72,6 +72,8 @@ func _process(delta: float) -> void:
 			leave = false
 			leavingDoor = true
 			hide()
+			speechText.text = ""
+			thoughtText.text = ""
 			$"../../../../NPCSpawner".start()
 			readyForNPC.emit()
 	

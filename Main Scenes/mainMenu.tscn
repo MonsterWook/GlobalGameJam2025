@@ -1,14 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://d01sv73aw0ny3"]
+[gd_scene load_steps=15 format=3 uid="uid://cn3xaprdn5sqw"]
 
 [ext_resource type="Script" path="res://Main Scenes/mainMenu.gd" id="1_s6c62"]
-[ext_resource type="Texture2D" uid="uid://bcdpjgaq8dfpj" path="res://Main Scenes/bubble.png" id="2_d6aok"]
-[ext_resource type="AudioStream" uid="uid://bbu6vcrlffupn" path="res://assets/sound/va/1.wav" id="2_ol5jh"]
-[ext_resource type="AudioStream" uid="uid://3nx7fp2eckk8" path="res://assets/sound/va/2.wav" id="3_0xnok"]
-[ext_resource type="AudioStream" uid="uid://cn4g6phx4dgo" path="res://assets/sound/va/3.wav" id="4_072hw"]
-[ext_resource type="AudioStream" uid="uid://8o4w51tja2ok" path="res://assets/sound/va/4.wav" id="5_6y6jx"]
-[ext_resource type="AudioStream" uid="uid://demr1u52nlu4x" path="res://assets/sound/va/5.wav" id="6_3tddq"]
-[ext_resource type="AudioStream" uid="uid://3mfmo47k2jhd" path="res://assets/sound/va/6.wav" id="7_1rsph"]
-[ext_resource type="AudioStream" uid="uid://dqbrwttydat1" path="res://assets/sound/va/7.wav" id="8_7w3k0"]
+[ext_resource type="Texture2D" uid="uid://dm4dcg54qn8i8" path="res://Main Scenes/bubble.png" id="2_d6aok"]
+[ext_resource type="AudioStream" uid="uid://caaq55pb01ksd" path="res://assets/sound/va/1.wav" id="2_ol5jh"]
+[ext_resource type="AudioStream" uid="uid://drgn7gt370mq1" path="res://assets/sound/va/2.wav" id="3_0xnok"]
+[ext_resource type="AudioStream" uid="uid://t2o086b318a0" path="res://assets/sound/va/3.wav" id="4_072hw"]
+[ext_resource type="AudioStream" uid="uid://btvhqqrnq47q3" path="res://assets/sound/va/4.wav" id="5_6y6jx"]
+[ext_resource type="AudioStream" uid="uid://dj5ulu6gxywyj" path="res://assets/sound/va/5.wav" id="6_3tddq"]
+[ext_resource type="AudioStream" uid="uid://w1dphieo6jxg" path="res://assets/sound/va/6.wav" id="7_1rsph"]
+[ext_resource type="AudioStream" uid="uid://dcw5fikg6y8l7" path="res://assets/sound/va/7.wav" id="8_7w3k0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axcsv"]
 atlas = ExtResource("2_d6aok")
