@@ -103,8 +103,8 @@ func entranceDialogue(dialogueNumber):
 			entranceDialogue(3)
 		3:
 			speechSprite.hide()
-			thoughtSprite.show()
 			thoughtSprite.play("ThoughtBubbleForming")
+			thoughtSprite.show()
 			await thoughtSprite.animation_finished
 			thoughtSprite.play("LockedThoughtBubble")
 
@@ -159,7 +159,7 @@ func switchNPC():
 		flip_h
 		
 	play(NPC)
-	NPC = "Rat"
+	
 	match(NPC):
 		"OfficeGuy":
 			
