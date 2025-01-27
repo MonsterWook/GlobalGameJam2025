@@ -1,56 +1,28 @@
-[gd_scene load_steps=13 format=3 uid="uid://d01sv73aw0ny3"]
+[gd_scene load_steps=15 format=3 uid="uid://d01sv73aw0ny3"]
 
 [ext_resource type="Script" path="res://Main Scenes/mainMenu.gd" id="1_s6c62"]
 [ext_resource type="Texture2D" uid="uid://bcdpjgaq8dfpj" path="res://Main Scenes/bubble.png" id="2_d6aok"]
+[ext_resource type="AudioStream" uid="uid://bbu6vcrlffupn" path="res://assets/sound/va/1.wav" id="2_ol5jh"]
+[ext_resource type="AudioStream" uid="uid://3nx7fp2eckk8" path="res://assets/sound/va/2.wav" id="3_0xnok"]
+[ext_resource type="AudioStream" uid="uid://cn4g6phx4dgo" path="res://assets/sound/va/3.wav" id="4_072hw"]
+[ext_resource type="AudioStream" uid="uid://8o4w51tja2ok" path="res://assets/sound/va/4.wav" id="5_6y6jx"]
+[ext_resource type="AudioStream" uid="uid://demr1u52nlu4x" path="res://assets/sound/va/5.wav" id="6_3tddq"]
+[ext_resource type="AudioStream" uid="uid://3mfmo47k2jhd" path="res://assets/sound/va/6.wav" id="7_1rsph"]
+[ext_resource type="AudioStream" uid="uid://dqbrwttydat1" path="res://assets/sound/va/7.wav" id="8_7w3k0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axcsv"]
 atlas = ExtResource("2_d6aok")
 region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_va06x"]
-atlas = ExtResource("2_d6aok")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jhplw"]
-atlas = ExtResource("2_d6aok")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuijv"]
-atlas = ExtResource("2_d6aok")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0bm4u"]
-atlas = ExtResource("2_d6aok")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_buaup"]
-atlas = ExtResource("2_d6aok")
-region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a2b1s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_axcsv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_va06x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jhplw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuijv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0bm4u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_buaup")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="Animation" id="Animation_myeod"]
@@ -100,7 +72,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(7, 11, 17, 22, 30, 37, 44, 50),
+"times": PackedFloat32Array(7, 12, 14, 18, 21.5, 27.5, 31, 37.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -176,6 +148,7 @@ _data = {
 
 [node name="mainMenu" type="Node2D"]
 script = ExtResource("1_s6c62")
+va_audio = Array[AudioStream]([ExtResource("2_ol5jh"), ExtResource("3_0xnok"), ExtResource("4_072hw"), ExtResource("5_6y6jx"), ExtResource("6_3tddq"), ExtResource("7_1rsph"), ExtResource("8_7w3k0")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -577.0
@@ -185,21 +158,21 @@ offset_bottom = 339.0
 color = Color(0, 0, 0, 1)
 
 [node name="bubble1" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(373, 368)
 sprite_frames = SubResource("SpriteFrames_a2b1s")
-frame = 1
 frame_progress = 0.509866
 
 [node name="bubble2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-343, 367)
 sprite_frames = SubResource("SpriteFrames_a2b1s")
-frame = 1
 frame_progress = 0.818664
 
 [node name="bubble3" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1, 372)
 sprite_frames = SubResource("SpriteFrames_a2b1s")
-frame = 1
 frame_progress = 0.818664
 
 [node name="VA" type="Label" parent="."]
@@ -218,3 +191,5 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
