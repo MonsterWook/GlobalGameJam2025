@@ -29,6 +29,9 @@ var unlockedThoughtBubble
 var exitSpeechBubble1
 var exitSpeechBubble2
 
+var exitSpeechBubbleLost1
+var exitSpeechBubbleLost2
+
 var NPCs = {
 	0 : "OfficeGuy",
 	1 : "Hustler",
@@ -92,11 +95,11 @@ func entranceDialogue(dialogueNumber):
 			entranceDialogue(1)
 		1:
 			speechText.text = speechBubble2
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(4).timeout
 			entranceDialogue(2)
 		2:
 			speechText.text = speechBubble3
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(4).timeout
 			entranceDialogue(3)
 		3:
 			speechSprite.hide()
@@ -105,24 +108,43 @@ func entranceDialogue(dialogueNumber):
 			await thoughtSprite.animation_finished
 			thoughtSprite.play("LockedThoughtBubble")
 
-func exitDialogue(dialogueNumber):
+func exitDialogueWon(dialogueNumber):
 	match(dialogueNumber):
 		0:
 			thoughtSprite.play("ThoughtBubble")
 			thoughtText.text = unlockedThoughtBubble
 			await get_tree().create_timer(4).timeout
-			exitDialogue(1)
+			exitDialogueWon(1)
 		1:
 			thoughtSprite.hide()
 			speechSprite.show()
 			oldSpeechBubblePos = speechSprite.position
-			speechSprite.position = Vector2(40, 40)
+			speechSprite.position = Vector2(60, 40)
 			speechText.text = exitSpeechBubble1
-			await get_tree().create_timer(3).timeout
-			exitDialogue(2)
+			await get_tree().create_timer(4).timeout
+			exitDialogueWon(2)
 		2:
 			speechSprite.position = oldSpeechBubblePos
 			speechText.text = exitSpeechBubble2
+			leave = true
+
+func exitDialogueLost(dialogueNumber):
+	match(dialogueNumber):
+		0:
+			thoughtSprite.play("LockedThoughtBubbleLost")
+			await thoughtSprite.animation_finished
+			exitDialogueLost(1)
+		1:
+			thoughtSprite.hide()
+			speechSprite.show()
+			oldSpeechBubblePos = speechSprite.position
+			speechSprite.position = Vector2(60, 40)
+			speechText.text = exitSpeechBubbleLost1
+			await get_tree().create_timer(4).timeout
+			exitDialogueLost(2)
+		2:
+			speechSprite.position = oldSpeechBubblePos
+			speechText.text = exitSpeechBubbleLost2
 			leave = true
 
 func switchNPC():
@@ -131,13 +153,13 @@ func switchNPC():
 	NPC = NPCs.get(inti)
 	
 	if NPC == oldNPC:
-		NPC = NPC.get(NPCs.size() - 1)
+		NPC = NPCs.get(NPCs.size() - 1)
 	
 	if oldNPC == "Rat":
 		flip_h
 		
 	play(NPC)
-	
+	NPC = "Rat"
 	match(NPC):
 		"OfficeGuy":
 			
@@ -151,36 +173,45 @@ func switchNPC():
 		
 		"Hustler":
 			speechBubble1 = "Haha, this reminds me of the good ol' days"
-			speechBubble2 = "I haven't been getting enough suckers to fall for my scams lately"
+			speechBubble2 = "I haven't been getting any suckers to fall for my scams lately"
 			speechBubble3 = "What should I do doc'?"
 			
 			unlockedThoughtBubble = "I haven't done a card scam in a while"
 			exitSpeechBubble1 = "I heard about this new scam using cards, here let me fill you in"
 			exitSpeechBubble2 = "Ooh that's clever, you're the best doc'"
 			
+			exitSpeechBubbleLost1 = "Maybe you should try your hand at a different career?"
+			exitSpeechBubbleLost2 = "Says you! You hack, I knew it was a waste coming here"
+			
 		"Rat":
 			flip_h
 			
-			speechBubble1 = ""
-			speechBubble2 = ""
-			speechBubble3 = ""
+			speechBubble1 = "Wow, what a fine place you have here"
+			speechBubble2 = "Hey fellow human, I am starving"
+			speechBubble3 = "You know of a place where a human like me can get some grub?"
 			
-			unlockedThoughtBubble = ""
-			exitSpeechBubble1 = ""
-			exitSpeechBubble2 = ""
+			unlockedThoughtBubble = "I need cheese. I need cheese. I need cheese. I need cheese."
+			exitSpeechBubble1 = "There is a cheese factory just down the road that serves the best cheese"
+			exitSpeechBubble2 = "Amazing! ...ahem, I meean cheese is alright. Thank you fellow human"
 
 		"Climber":
 			
-			speechBubble1 = ""
-			speechBubble2 = ""
-			speechBubble3 = ""
+			speechBubble1 = "Haha, Mt. Everest couldn't be further from here"
+			speechBubble2 = "I'm working up to doing my hardest climb yet"
+			speechBubble3 = "What should I do in preparation?"
 			
-			unlockedThoughtBubble = ""
-			exitSpeechBubble1 = ""
-			exitSpeechBubble2 = ""
+			unlockedThoughtBubble = "Ugh, I wish I didn't have to train"
+			exitSpeechBubble1 = "Training is for amateurs, just send it. You'll be fine"
+			exitSpeechBubble2 = "You know what? You are right, I got this!"
+			
+			exitSpeechBubbleLost1 = "Work on your endurance, strength, and flexibility. And don't forget to rest right before!"
+			exitSpeechBubbleLost2 = "Damn it. Yea I know, I know. What are you, my mom?"
 
-func _fucking_leave() -> void:
-	exitDialogue(0)
+func _fucking_leave(won) -> void:
+	if won:
+		exitDialogueWon(0)
+	else:
+		exitDialogueLost(0)
 
 func _close_door() -> void:
 	background.play("closed")
